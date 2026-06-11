@@ -535,8 +535,7 @@ function App() {
   // Total items in cart
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const cleanPath = currentPath.split('?')[0].split('#')[0].replace(/\/$/, '');
-  if (cleanPath === '/admin' || cleanPath.endsWith('/admin')) {
+  if (currentPath === '/admin' || currentPath.endsWith('/admin')) {
     return (
       <AdminPortal 
         products={productsList}
