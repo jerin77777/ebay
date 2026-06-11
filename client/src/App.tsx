@@ -203,7 +203,7 @@ function App() {
   });
 
   // Client-side Router State
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname.replace(/\/$/, '') || '/');
 
   useEffect(() => {
     localStorage.setItem('valuebay_products', JSON.stringify(productsList));
@@ -535,7 +535,8 @@ function App() {
   // Total items in cart
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  if (currentPath === '/admin' || currentPath.endsWith('/admin')) {
+  const cleanPath = currentPath.split('?')[0].split('#')[0].replace(/\/$/, '');
+  if (cleanPath === '/admin' || cleanPath.endsWith('/admin')) {
     return (
       <AdminPortal 
         products={productsList}
